@@ -7,8 +7,8 @@ import "leaflet/dist/leaflet.css";
 const Map = () => {
   const latitude = 62.8938994150319;
   const longitude = 27.676290599660508;
-  const position = [62.89048415971304, 27.678362711363018];
 
+  // Currently using static data before the backend will be build to get this data from MongoDB.
   const geojsonData = {
     "type": "FeatureCollection",
     "features": [
@@ -133,7 +133,6 @@ const Map = () => {
     return (
       <MapContainer {...mapOptions} className="map">
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-        {/* Use GeoJSON to render the features */}
         <GeoJSON data={geojsonData} onEachFeature={onEachFeature} />
       </MapContainer>
     );

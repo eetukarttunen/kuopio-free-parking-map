@@ -10,9 +10,9 @@ function Navigation() {
 
   return (
     <nav className="navigation-container">
-        <div className="navigation">
-            <img src={logo} height="50px" alt="Logo" />
-	</div>
+      <div className="navigation">
+        <img src={logo} height="50px" alt="Logo" />
+      </div>
     </nav>
   )
 }
