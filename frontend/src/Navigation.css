@@ -1,6 +1,4 @@
 img {
-    padding-top: 25px;
-    padding-bottom: 25px;
 }
 
 .navigation-container {
@@ -12,9 +10,9 @@ img {
 }
 
 .navigation {
+    justify-content: center;
     align-items: center;
     display: flex;
     gap: 40px;
-    justify-content: space-between;
     min-height: 70px;
 }
