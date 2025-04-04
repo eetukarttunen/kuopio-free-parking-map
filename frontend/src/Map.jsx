@@ -4,6 +4,8 @@ import "leaflet/dist/leaflet.css";
 import L from 'leaflet';
 import markerIcon from 'leaflet/dist/images/marker-icon.png';
 import markerShadow from 'leaflet/dist/images/marker-shadow.png';
+import './Map.css'
+import Navigation from './Navigation.jsx'
 
 const defaultIcon = new L.Icon({
   iconUrl: markerIcon,
@@ -128,7 +130,6 @@ const Map = () => {
     maxZoom: 18,
     minZoom: 5,
   };
-  
 
   const onEachFeature = (feature, layer) => {
     if (feature.properties) {
@@ -145,10 +146,14 @@ const Map = () => {
   };
 
   return (
-    <MapContainer {...mapOptions} className="map">
-      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-      <GeoJSON data={geojsonData} onEachFeature={onEachFeature} pointToLayer={pointToLayer} />
-    </MapContainer>
+    <>
+      <Navigation />
+
+      <MapContainer {...mapOptions} className="map">
+        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+        <GeoJSON data={geojsonData} onEachFeature={onEachFeature} pointToLayer={pointToLayer} />
+      </MapContainer>
+    </>
   );
 };
 

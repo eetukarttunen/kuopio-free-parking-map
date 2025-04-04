@@ -1,0 +1,11 @@
+.leaflet-control-container {
+    position: absolute;
+    right: 55px;
+}
+
+.map {
+    width: 100%;
+    margin: 0px 0px 15px 0px;
+    height: calc(100% - 70px);
+    text-align: center;
+  }
