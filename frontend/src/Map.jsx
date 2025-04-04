@@ -1,6 +1,18 @@
 import React from 'react';
 import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
 import "leaflet/dist/leaflet.css";
+import L from 'leaflet';
+import markerIcon from 'leaflet/dist/images/marker-icon.png';
+import markerShadow from 'leaflet/dist/images/marker-shadow.png';
+
+const defaultIcon = new L.Icon({
+  iconUrl: markerIcon,
+  shadowUrl: markerShadow,
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
+});
 
 const Map = () => {
   const latitude = 62.8938994150319;
@@ -118,22 +130,26 @@ const Map = () => {
   };
   
 
-    const onEachFeature = (feature, layer) => {
-      if (feature.properties) {
-        layer.bindPopup(
-          `<div><strong>${feature.properties.name}</strong><br />
-           ${feature.properties.parking_time} <br />
-           ${feature.properties.address}</div>`
-        );
-      }
-    };
-  
-    return (
-      <MapContainer {...mapOptions} className="map">
-        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-        <GeoJSON data={geojsonData} onEachFeature={onEachFeature} />
-      </MapContainer>
-    );
+  const onEachFeature = (feature, layer) => {
+    if (feature.properties) {
+      layer.bindPopup(
+        `<div><strong>${feature.properties.name}</strong><br />
+         ${feature.properties.parking_time} <br />
+         ${feature.properties.address}</div>`
+      );
+    }
   };
+
+  const pointToLayer = (feature, latlng) => {
+    return L.marker(latlng, { icon: defaultIcon });
+  };
+
+  return (
+    <MapContainer {...mapOptions} className="map">
+      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+      <GeoJSON data={geojsonData} onEachFeature={onEachFeature} pointToLayer={pointToLayer} />
+    </MapContainer>
+  );
+};
 
 export default Map;
