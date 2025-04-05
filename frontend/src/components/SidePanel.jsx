@@ -1,4 +1,5 @@
 import { useState } from "react";
+import SidePanelButton from "./SidePanelButton.jsx"; // Import the new component
 import "./SidePanel.css";
 
 function SidePanel() {
@@ -6,16 +7,17 @@ function SidePanel() {
 
   return (
     <div className={`sidepanel-container ${isOpen ? "open" : "closed"}`}>
-      <button
-        className="toggle-button"
-        onClick={() => setIsOpen(!isOpen)}
-        style={{ right: isOpen ? "-15px" : "-70px" }}
-      >
-        <span className={`arrow ${isOpen ? "left" : "right"}`}></span>
-      </button>
-
+      <SidePanelButton isOpen={isOpen} toggle={() => setIsOpen(!isOpen)} />
       <h2>Suodattimet</h2>
-      <p>Pian käytössä!</p>
+      <div className="filters-container">
+        <p style={{"color": "red"}}>Filteröinti pian käytössä!</p>
+        <select name="selectList" id="selectList" defaultValue='default'>
+          <option value="default">Valitse parkkiaika</option>
+          <option value="option 1">15min</option>
+          <option value="option 2">1h</option>
+          <option value="option 3">2h</option>
+        </select>
+      </div>
     </div>
   );
 }
