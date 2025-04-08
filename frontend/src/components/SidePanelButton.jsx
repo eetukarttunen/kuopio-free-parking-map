@@ -8,7 +8,7 @@ function SidePanelButton({ isOpen, toggle }) {
       className="toggle-button"
       onClick={toggle}
       style={{ right: isOpen ? "-20px" : "-50px" }}
-      aria-label="Avaa tai sulje kartan suodatinvalikko"
+      aria-label="Avaa tai piilota kartan suodatinvalikko"
     >
       <FontAwesomeIcon 
         icon={isOpen ? faCircleArrowLeft : faCircleArrowRight} 

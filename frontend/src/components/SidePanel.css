@@ -2,7 +2,7 @@
   background-color: rgb(255 255 255 / 91%);
   color: #005239;
   bottom: 0;
-  height: calc(100% - 70px);
+  height: 100%;
   left: 0;
   position: fixed;
   transition: 0.3s ease-in-out;
@@ -14,6 +14,11 @@
 
 .sidepanel-container.closed {
   transform: translateX(-100%);
+}
+
+.sidepanel-content {
+  top: 70px;
+  position: relative;
 }
 
 .toggle-button {

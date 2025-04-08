@@ -7,6 +7,8 @@ img {
     color: pink;
     justify-content: space-between;
     width: 100%;
+    z-index: 1006;
+    position: relative;
 }
 
 .navigation {
