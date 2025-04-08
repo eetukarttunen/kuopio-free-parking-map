@@ -46,13 +46,22 @@ const Map = ({ filterTime, geoData }) => {
 
   const onEachFeature = (feature, layer) => {
     if (feature.properties) {
+      const { name, parkingTime, address } = feature.properties;
+  
+      const timeText = parkingTime
+        ? `${parkingTime} min`
+        : "Ei aikarajoitusta";
+  
       layer.bindPopup(
-        `<div><strong>${feature.properties.name}</strong><br />
-         ${feature.properties.parking_time}min<br />
-         ${feature.properties.address}</div>`
+        `<div>
+           <strong>${name}</strong><br />
+           ${timeText}<br />
+           ${address}
+         </div>`
       );
     }
   };
+  
 
   const pointToLayer = (feature, latlng) => {
     return L.marker(latlng, { icon: defaultIcon });
