@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 
 function App() {
   const [filterTime, setFilterTime] = useState('');  
+  const [isOpen, setIsOpen] = useState(true);
 
   const geojsonData = {
     "type": "FeatureCollection",
@@ -109,16 +110,20 @@ function App() {
     ]
   };
 
+
   return (
     <>
       <SidePanel
         filterTime={filterTime}
         setFilterTime={setFilterTime}
         geoData={geojsonData}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}  // Pass the state and setter to control side panel visibility
       />
       <Map
         filterTime={filterTime}
         geoData={geojsonData}
+        setIsOpen={setIsOpen}  // Pass setIsOpen to Map component to control side panel visibility
       />
     </>
   );
