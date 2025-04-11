@@ -1,3 +1,23 @@
+.custom-icon-red {
+    filter: hue-rotate(0deg) saturate(200%) brightness(0.8);
+}
+
+.custom-icon-yellow {
+    filter: hue-rotate(60deg) saturate(200%) brightness(0.8);
+}
+
+.custom-icon-green {
+    filter: hue-rotate(120deg) saturate(200%) brightness(0.8);
+}
+
+.custom-icon-blue {
+    filter: hue-rotate(240deg) saturate(200%) brightness(0.8);
+}
+
+.custom-icon-gray {
+    filter: grayscale(100%) brightness(0.8);
+}
+
 .leaflet-control-container {
     position: absolute;
     right: 55px;
@@ -8,4 +28,4 @@
     margin: 0px 0px 15px 0px;
     height: calc(100% - 80px);
     text-align: center;
-  }
+}
