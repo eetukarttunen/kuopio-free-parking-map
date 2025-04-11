@@ -31,12 +31,15 @@ body {
 }
 
 h1 {
-  font-size: 2em;
-  line-height: 1.1;
+  font-size: 1.5em;
+  font-weight: 300;
+  font-family: "Fjalla One", sans-serif;
+  color: #005239;
 }
 
 h2 {
-  padding: 0px 25px 0px 25px;
+  font-family: 'Fjalla One';
+  font-size: 1.3em;
 }
 
 @media (prefers-color-scheme: light) {

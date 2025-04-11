@@ -17,7 +17,7 @@ function SidePanel({ filterTime, setFilterTime, geoData }) {
     <div className={`sidepanel-container ${isOpen ? "open" : "closed"}`}>
       <SidePanelButton isOpen={isOpen} toggle={() => setIsOpen(!isOpen)} />
       <div className="sidepanel-content">
-        <h2>Suodattimet</h2>
+        <h2>SUODATTIMET</h2>
         <div className="filters-container">
           <select
             value={filterTime}

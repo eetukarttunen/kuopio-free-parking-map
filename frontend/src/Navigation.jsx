@@ -11,7 +11,7 @@ function Navigation() {
   return (
     <nav className="navigation-container">
       <div className="navigation">
-        <img src={logo} height="50px" alt="Logo" />
+        <h1>KUOPIO ILMAINEN PYSÄKÖINTI</h1>
       </div>
     </nav>
   )
