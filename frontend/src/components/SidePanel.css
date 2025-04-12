@@ -28,7 +28,7 @@
   font-size: 0.75rem;
   white-space: nowrap;
   z-index: 9999;
-
+  
   visibility: hidden;
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -45,12 +45,11 @@
   border-color: #333 transparent transparent transparent;
 }
 
-.toggle-button:hover .tooltip-text,
+.sidepanel-container.closed .toggle-button:hover .tooltip-text,
 .tooltip-text.visible {
   visibility: visible;
   opacity: 1;
 }
-
 
 .sidepanel-content {
   top: 80px;
