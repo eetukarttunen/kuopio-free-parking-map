@@ -57,15 +57,25 @@ const Map = ({ filterTime, geoData, setIsOpen }) => {
   }, [filterTime, geoData]);
 
   const onEachFeature = (feature, layer) => {
-    if (feature.properties) {
+    if (feature.properties && feature.geometry) {
       const { name, parking_time, address } = feature.properties;
+      const [lng, lat] = feature.geometry.coordinates;
       const timeText = parking_time ? `${parking_time} min` : "Ei aikarajoitusta";
-
-      layer.bindPopup(
-        `<div><strong>${name}</strong><br />${timeText}<br />${address}</div>`
-      );
+      const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
+  
+      const popupContent = `
+        <div>
+          <strong>${name}</strong><br />
+          ${timeText}<br />
+          ${address}<br />
+          <a href="${googleMapsUrl}" target="_blank">Aja minut tänne</a>
+        </div>
+      `;
+  
+      layer.bindPopup(popupContent);
     }
   };
+  
 
   const pointToLayer = (feature, latlng) => {
     const parkingTime = feature.properties.parking_time || "no_time";
