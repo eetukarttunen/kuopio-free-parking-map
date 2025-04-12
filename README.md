@@ -14,10 +14,12 @@ Kuopio Free Parking Map is a React project built with Vite, featuring a Leaflet 
 
 ## Current version looks like this:
 
-### Mobile view:
 <div style="float: left">
     <img src="./versions/mobile/mobile_2.jpg" width="300" />
     <img src="./versions/mobile/mobile_1.jpg" width="300" />
 </div>
 
 <img src="./versions/version_latest.png" width="605" />
+
+## Next steps:
+- Backend with MongoDB connectivity to dynamically update the data.
