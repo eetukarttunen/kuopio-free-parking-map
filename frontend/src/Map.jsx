@@ -2,32 +2,28 @@ import React, { useEffect, useMemo } from 'react';
 import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
 import "leaflet/dist/leaflet.css";
 import L from 'leaflet';
-import markerIcon from 'leaflet/dist/images/marker-icon.png';
-import markerShadow from 'leaflet/dist/images/marker-shadow.png';
 import './Map.css';
 import Navigation from './Navigation.jsx';
 
 const parkingTimeColorMap = {
   "15": "red",
-  "30": "yellow",
-  "60": "green",
-  "120": "blue",
-  "no_time": "gray",
+  "60": "yellow",
+  "120": "green",
+  "no_time": "grey",
 };
 
 const getColorByParkingTime = (parkingTime) => {
-  return parkingTimeColorMap[parkingTime] || "gray";
+  return parkingTimeColorMap[parkingTime] || "grey";
 };
 
 const createCustomIcon = (color) => {
   return new L.Icon({
-    iconUrl: markerIcon,
-    shadowUrl: markerShadow,
+    iconUrl: `https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-${color}.png`,
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
     iconSize: [25, 41],
     iconAnchor: [12, 41],
     popupAnchor: [1, -34],
     shadowSize: [41, 41],
-    className: `custom-icon-${color}`,
   });
 };
 
@@ -62,7 +58,7 @@ const Map = ({ filterTime, geoData, setIsOpen }) => {
       const [lng, lat] = feature.geometry.coordinates;
       const timeText = parking_time ? `${parking_time} min` : "Ei aikarajoitusta";
       const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
-  
+
       const popupContent = `
         <div>
           <strong>${name}</strong><br />
@@ -71,22 +67,18 @@ const Map = ({ filterTime, geoData, setIsOpen }) => {
           <a href="${googleMapsUrl}" target="_blank">Aja minut tänne</a>
         </div>
       `;
-  
+
       layer.bindPopup(popupContent);
     }
   };
-  
 
   const pointToLayer = (feature, latlng) => {
     const parkingTime = feature.properties.parking_time || "no_time";
     const color = getColorByParkingTime(parkingTime);
-
     const customIcon = createCustomIcon(color);
-
     return L.marker(latlng, { icon: customIcon });
   };
 
-  // Logic to close the side-panel based on user map movements.
   useEffect(() => {
     const map = document.querySelector('.leaflet-container');
     if (map) {
