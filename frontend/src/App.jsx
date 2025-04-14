@@ -124,6 +124,7 @@ function App() {
         filterTime={filterTime}
         geoData={geojsonData}
         setIsOpen={setIsOpen}
+        isOpen={isOpen}
       />
     </>
   );

@@ -8,8 +8,8 @@ import Navigation from './Navigation.jsx';
 const parkingTimeColorMap = {
   "15": "red",
   "60": "yellow",
-  "120": "green",
-  "no_time": "grey",
+  "120": "orange",
+  "no_time": "green",
 };
 
 const getColorByParkingTime = (parkingTime) => {
@@ -27,7 +27,7 @@ const createCustomIcon = (color) => {
   });
 };
 
-const Map = ({ filterTime, geoData, setIsOpen }) => {
+const Map = ({ filterTime, geoData, setIsOpen, isOpen }) => {
   const latitude = 62.8939;
   const longitude = 27.6763;
 
@@ -96,13 +96,27 @@ const Map = ({ filterTime, geoData, setIsOpen }) => {
     <>
       <Navigation />
       <MapContainer {...mapOptions} className="map">
-        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+      <TileLayer
+  url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+  attribution='&copy; <a href="https://www.esri.com/">Esri</a>'
+/>
+
         <GeoJSON
           key={filterTime}
           data={filteredGeoJson}
           onEachFeature={onEachFeature}
           pointToLayer={pointToLayer}
         />
+        
+        <div className='map-info' style={{ display: isOpen ? 'none' : 'block' }}>
+          <ul>
+            <li>15min</li>
+            <li>60min</li>
+            <li>120min</li>
+            <li>Ei aikarajoitusta</li>
+          </ul>
+        </div>
+        
       </MapContainer>
     </>
   );
