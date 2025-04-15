@@ -4,8 +4,9 @@ import SidePanel from './components/SidePanel.jsx'
 import React, { useState } from 'react';
 
 function App() {
-  const [filterTime, setFilterTime] = useState('');  
+  const [filterTime, setFilterTime] = useState('');
   const [isOpen, setIsOpen] = useState(false);
+  const [selectedMap, setSelectedMap] = useState("osm");
 
   const geojsonData = {
     "type": "FeatureCollection",
@@ -119,13 +120,18 @@ function App() {
         geoData={geojsonData}
         isOpen={isOpen}
         setIsOpen={setIsOpen}
+        selectedMap={selectedMap}
+        setSelectedMap={setSelectedMap}
       />
+
       <Map
         filterTime={filterTime}
         geoData={geojsonData}
         setIsOpen={setIsOpen}
         isOpen={isOpen}
+        selectedMap={selectedMap}
       />
+
     </>
   );
 }

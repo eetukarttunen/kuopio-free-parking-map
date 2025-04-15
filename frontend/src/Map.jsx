@@ -5,37 +5,36 @@ import L from 'leaflet';
 import './Map.css';
 import Navigation from './Navigation.jsx';
 
-const parkingTimeColorMap = {
-  "15": "red",
-  "60": "yellow",
-  "120": "orange",
-  "no_time": "green",
-};
-
-const getColorByParkingTime = (parkingTime) => {
-  return parkingTimeColorMap[parkingTime] || "grey";
-};
-
-const createCustomIcon = (color) => {
-  return new L.Icon({
-    iconUrl: `https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-${color}.png`,
-    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    shadowSize: [41, 41],
-  });
-};
-
-const Map = ({ filterTime, geoData, setIsOpen, isOpen }) => {
+const Map = ({ filterTime, geoData, setIsOpen, isOpen, selectedMap }) => {
   const latitude = 62.8939;
   const longitude = 27.6763;
-
   const mapOptions = {
     center: [latitude, longitude],
     zoom: 13,
     maxZoom: 18,
     minZoom: 5,
+  };
+
+  const parkingTimeColorMap = {
+    "15": "red",
+    "60": "yellow",
+    "120": "orange",
+    "no_time": "green",
+  };
+  
+  const getColorByParkingTime = (parkingTime) => {
+    return parkingTimeColorMap[parkingTime] || "grey";
+  };
+  
+  const createCustomIcon = (color) => {
+    return new L.Icon({
+      iconUrl: `https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-${color}.png`,
+      shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+      iconSize: [25, 41],
+      iconAnchor: [12, 41],
+      popupAnchor: [1, -34],
+      shadowSize: [41, 41],
+    });
   };
 
   const filteredGeoJson = useMemo(() => {
@@ -96,18 +95,24 @@ const Map = ({ filterTime, geoData, setIsOpen, isOpen }) => {
     <>
       <Navigation />
       <MapContainer {...mapOptions} className="map">
-      <TileLayer
-  url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
-  attribution='&copy; <a href="https://www.esri.com/">Esri</a>'
-/>
-
+        <TileLayer
+          url={
+            selectedMap === "satellite"
+              ? "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+              : "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          }
+          attribution={
+            selectedMap === "satellite"
+              ? '&copy; <a href="https://www.esri.com/">Esri</a>'
+              : '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
+          }
+        />
         <GeoJSON
           key={filterTime}
           data={filteredGeoJson}
           onEachFeature={onEachFeature}
           pointToLayer={pointToLayer}
         />
-        
         <div className='map-info' style={{ display: isOpen ? 'none' : 'block' }}>
           <ul>
             <li>15min</li>
@@ -116,7 +121,6 @@ const Map = ({ filterTime, geoData, setIsOpen, isOpen }) => {
             <li>Ei aikarajoitusta</li>
           </ul>
         </div>
-        
       </MapContainer>
     </>
   );

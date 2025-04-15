@@ -1,8 +1,7 @@
 import "./SidePanel.css";
 import SidePanelButton from "./SidePanelButton.jsx";
 
-function SidePanel({ filterTime, setFilterTime, geoData, isOpen, setIsOpen }) {
-  // Extract the unique time options from geoData
+function SidePanel({ filterTime, setFilterTime, geoData, isOpen, setIsOpen, selectedMap, setSelectedMap }) {
   const timeOptions = Array.from(
     new Set(
       geoData.features
@@ -30,6 +29,10 @@ function SidePanel({ filterTime, setFilterTime, geoData, isOpen, setIsOpen }) {
               </option>
             ))}
             <option value="no_time">Ei aikarajoitusta</option>
+          </select>
+          <select value={selectedMap} onChange={(e) => setSelectedMap(e.target.value)}>
+            <option value="osm">OpenStreetMap</option>
+            <option value="satellite">Satelliitti (Esri World Imagery)</option>
           </select>
         </div>
       </div>
