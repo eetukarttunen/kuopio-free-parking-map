@@ -68,11 +68,11 @@ ul {
 }
 
 .map-info ul li:nth-child(2)::before {
-  background-color: yellow;
+  background-color: orange;
 }
 
 .map-info ul li:nth-child(3)::before {
-  background-color: orange;
+  background-color: yellow;
 }
 
 .map-info ul li:nth-child(4)::before {

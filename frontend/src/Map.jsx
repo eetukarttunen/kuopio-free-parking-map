@@ -17,8 +17,8 @@ const Map = ({ filterTime, geoData, setIsOpen, isOpen, selectedMap }) => {
 
   const parkingTimeColorMap = {
     "15": "red",
-    "60": "yellow",
-    "120": "orange",
+    "60": "orange",
+    "120": "yellow",
     "no_time": "green",
   };
   
